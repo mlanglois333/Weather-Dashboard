@@ -26,7 +26,7 @@ function getLat(){
       .then(function(response) {
         console.log(response);
 $("#cityTitle").html(response.name + " " + now);
-$("#windSpeed").text("Wind Speed: " + response.wind.speed);
+
 
         lat=response.coord.lat;
 
@@ -49,11 +49,21 @@ $.ajax({
     console.log(response);
 
     
-    
+    $("#windSpeed").text("Wind Speed: " + response.current.wind_speed);
     $("#humidity").text("Humidity: " + response.current.humidity);
     var tempF = (response.current.temp - 273.15) * 1.80 + 32;
     $("#temperature").text("Temperature " + tempF.toFixed(2));
     $("#UV").text("UV Index: " + response.current.uvi);
+
+
+    for (i=0;i<5; i++){
+
+      
+     
+      $("#day" + i).text("Temperature: " + response.daily[i].temp.day + "Humidity: " + response.daily[i].humidity);
+
+      
+    }
 });
 
 }
