@@ -1,12 +1,19 @@
 
 var now= moment().format('MMMM Do, h:mm');
 var city="";
-var lat="";
-var lon="";
 var APIKey = "166a433c57516f51dfab1f7edaed8413";
+
+
+function searchCity(){
+
+    var citySearch= $("#searchVal").val();
+    city= citySearch.trim();
+    renderWeather()
+}
+
+function renderWeather(){
 var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
-renderWeather(){
 $.ajax({
   url: queryURL,
   method: "GET"
