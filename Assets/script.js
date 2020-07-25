@@ -58,10 +58,10 @@ $.ajax({
 
     for (i=0;i<=5; i++){
 
-      
+      var tempF = (response.daily[i].temp.day - 273.15) * 1.80 + 32;
      
-      $("#day" + i).text("Temperature: " + response.daily[i].temp.day + "Humidity: " + response.daily[i].humidity);
-
+      $("#day" + i).text("Temp: " + tempF.toFixed(2)+ "Humidity: " + response.daily[i].humidity);
+      
       
     }
 });
