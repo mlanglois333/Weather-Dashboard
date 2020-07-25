@@ -4,6 +4,10 @@ var city="";
 let lon="";
 let lat="";
 
+//function clickBut(){
+  //city = $(this).attr("data-city")
+ // getLat()
+//}
 
 function cityBut(){
 
@@ -11,6 +15,8 @@ function cityBut(){
   newBut.attr('id', 'cityBut');
   newBut.text(city);
   newBut.attr('data-city', city);
+  //newBut.attr('onclick', clickBut());
+  
   $("#searchCont").append(newBut);
 
 
