@@ -56,7 +56,7 @@ $.ajax({
     $("#UV").text("UV Index: " + response.current.uvi);
 
 
-    for (i=0;i<5; i++){
+    for (i=0;i<=5; i++){
 
       
      
