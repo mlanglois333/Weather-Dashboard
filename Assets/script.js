@@ -1,7 +1,7 @@
 
 var now= moment().format('MMMM Do, h:mm');
 var city="";
-var APIKey = "166a433c57516f51dfab1f7edaed8413";
+
 
 
 function searchCity(){
@@ -12,7 +12,7 @@ function searchCity(){
 }
 
 function renderWeather(){
-var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=516035025459d10bbc10ed362c69ce7b";
 
 $.ajax({
   url: queryURL,
@@ -27,6 +27,8 @@ $.ajax({
     $("#humidity").text("Humidity: " + response.main.humidity);
     var tempF = (response.main.temp - 273.15) * 1.80 + 32;
     $("#temperature").text("Temperature " + tempF.toFixed(2));
-    $("#UV").text("UV Index: " + response.main.humidity);
+    $("#UV").text("UV Index: " + response.main.UVindex);
   });
 }
+
+document.getElementById("searchBut").addEventListener("click", function(event) {event.preventDefault()});
