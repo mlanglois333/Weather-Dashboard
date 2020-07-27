@@ -4,20 +4,16 @@ var city="";
 let lon="";
 let lat="";
 
-//function clickBut(){
-  //city = $(this).attr("data-city")
- // getLat()
-//}
+function clickBut(){
+console.log('clicked');
+}
 
 function cityBut(){
 
-  var newBut = $("<button>");
-  newBut.attr('id', 'cityBut');
-  newBut.text(city);
-  newBut.attr('data-city', city);
-  //newBut.attr('onclick', clickBut());
-  
-  $("#searchCont").append(newBut);
+  var newBut = $('<input/>').attr({ type: 'button', text : city, value:city });;
+  newBut.attr('class', 'cityBut');
+
+  $('#searchCont').append(newBut);
 
 
 
@@ -78,8 +74,8 @@ $.ajax({
     for (i=0;i<=5; i++){
 
       var tempF = (response.daily[i].temp.day - 273.15) * 1.80 + 32;
-     
-      $("#day" + i).text("Temp: " + tempF.toFixed(2)+ "Humidity: " + response.daily[i].humidity);
+     var day = moment().add(i, 'day').format('dddd');
+      $("#day" + i).html(day + " <br> Temp: " + tempF.toFixed(2)+ " <br> Humidity: " + response.daily[i].humidity);
       
       
     }
@@ -91,3 +87,5 @@ $.ajax({
 
 
 document.getElementById("searchBut").addEventListener("click", function(event) {event.preventDefault()});
+document.getElementById("searchBut").addEventListener("click", function() {searchCity()});
+
