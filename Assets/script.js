@@ -72,10 +72,10 @@ $.ajax({
 
 
     for (i=0;i<=5; i++){
-
+      var weathImg= "'http://openweathermap.org/img/wn/"+response.daily[i].weather[0].icon +".png'"
       var tempF = (response.daily[i].temp.day - 273.15) * 1.80 + 32;
      var day = moment().add(i, 'day').format('dddd');
-      $("#day" + i).html(day + " <br> Temp: " + tempF.toFixed(2)+ " <br> Humidity: " + response.daily[i].humidity);
+      $("#day" + i).html(day + "<br> <img src="+weathImg+" <br> Temp: " + tempF.toFixed(2)+ " <br> Humidity: " + response.daily[i].humidity);
       
       
     }
