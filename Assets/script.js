@@ -62,13 +62,19 @@ $.ajax({
   .then(function(response) {
 
     console.log(response);
-
-    
+   
+        if (response.current.uvi <3.1){    $("#UV").html("UV Index: <span class='green'>" + response.current.uvi + "</span>");
+        ;}
+    else if (response.current.uvi <6.1){    $("#UV").html("UV Index: <span class='yellow'>" + response.current.uvi + "</span>");
+  }
+    else {    $("#UV").html("UV Index: <span class='red'>" + response.current.uvi + "</span>");
+    ;};
     $("#windSpeed").text("Wind Speed: " + response.current.wind_speed);
     $("#humidity").text("Humidity: " + response.current.humidity);
     var tempF = (response.current.temp - 273.15) * 1.80 + 32;
     $("#temperature").text("Temperature " + tempF.toFixed(2));
-    $("#UV").text("UV Index: " + response.current.uvi);
+
+
 
 
     for (i=0;i<=5; i++){
