@@ -4,20 +4,7 @@ var city = "";
 let lon = "";
 let lat = "";
 
-function clickBut() {
-  console.log('clicked');
-}
 
-function cityBut() {
-
-  var newBut = $('<input/>').attr({ type: 'button', text: city, value: city });;
-  newBut.attr('class', 'cityBut');
-
-  $('#searchCont').append(newBut);
-
-
-
-}
 
 function searchCity() {
 
@@ -26,7 +13,7 @@ function searchCity() {
 
 
   getLat();
-  cityBut();
+  
 }
 
 
@@ -93,12 +80,30 @@ function renderWeather() {
 
       }
     });
+    cityBut();
+
+}
+
+function clickBut() {
+  console.log('clicked');
+  console.log(this);
+}
+
+function cityBut() {
+
+  var cityBtn = $("<button>");
+  cityBtn.text(city);
+  cityBtn.attr('id', city);
+  cityBtn.on('click', function(){clickBut()});
+  $('#searchCont').append(cityBtn);
+  
+
+
 
 }
 
 
-
-
 document.getElementById("searchBut").addEventListener("click", function (event) { event.preventDefault() });
 document.getElementById("searchBut").addEventListener("click", function () { searchCity() });
+document.getElementById("searchBut").addEventListener("click", function (event){event.stopPropagation });
 
