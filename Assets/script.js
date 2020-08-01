@@ -84,19 +84,19 @@ function renderWeather() {
 
 }
 
-function clickBut() {
-  console.log('clicked');
-  console.log(this);
-}
 
 function cityBut() {
+if ($("#" + city).length == 0){
 
+var cityAssign=city
   var cityBtn = $("<button>");
   cityBtn.text(city);
-  cityBtn.attr('id', city);
-  cityBtn.on('click', function(){clickBut()});
+  cityBtn.attr('id', city)
+  cityBtn.on('click', function(){city=cityAssign});
+  cityBtn.on('click', function(){getLat()});
   $('#searchCont').append(cityBtn);
-  
+}
+else {return};
 
 
 
