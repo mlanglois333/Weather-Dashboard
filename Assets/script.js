@@ -13,7 +13,7 @@ function searchCity() {
 
 
   getLat();
-  
+
 }
 
 
@@ -80,30 +80,45 @@ function renderWeather() {
 
       }
     });
-    cityBut();
+    if(localStorage.getItem('lastSearch') === null){
+    localStorage.setItem('lastSearch', city);
+    }
+    else {localStorage.clear('lastSearch');
+    localStorage.setItem('lastSearch', city);
+
+  }
+  console.log(localStorage.getItem('lastSearch'));
+
+  cityBut();
 
 }
 
 
 function cityBut() {
-if ($("#" + city).length == 0){
+  if ($("#" + city).length == 0) {
 
-var cityAssign=city
-  var cityBtn = $("<button>");
-  cityBtn.text(city);
-  cityBtn.attr('id', city)
-  cityBtn.on('click', function(){city=cityAssign});
-  cityBtn.on('click', function(){getLat()});
-  $('#searchCont').append(cityBtn);
+    var cityAssign = city
+    var cityBtn = $("<button>");
+    cityBtn.text(city);
+    cityBtn.attr('id', city)
+    cityBtn.on('click', function () { city = cityAssign });
+    cityBtn.on('click', function () { getLat() });
+    $('#searchCont').append(cityBtn);
+  }
+  else { return };
+
+
+
 }
-else {return};
 
-
-
+function load() { if (localStorage.getItem('lastSearch') === null)
+{return}
+else {city=localStorage.getItem('lastSearch');
+getLat();}
 }
-
 
 document.getElementById("searchBut").addEventListener("click", function (event) { event.preventDefault() });
 document.getElementById("searchBut").addEventListener("click", function () { searchCity() });
-document.getElementById("searchBut").addEventListener("click", function (event){event.stopPropagation });
-
+document.getElementById("searchBut").addEventListener("click", function (event) { event.stopPropagation });
+load();
+console.log(localStorage.getItem('lastSearch'));
