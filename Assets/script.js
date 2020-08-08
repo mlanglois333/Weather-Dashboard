@@ -3,8 +3,19 @@ var now = moment().format('MMMM Do, h:mm');
 var city = "";
 let lon = "";
 let lat = "";
+const hideClass= $(".hide");
 
 
+
+function hideData() {
+
+hideClass.hide();
+}
+
+function showData(){
+
+  hideClass.show()
+}
 
 function searchCity() {
 
@@ -35,6 +46,7 @@ function getLat() {
 
       lon = response.coord.lon;
       renderWeather();
+      showData();
 
     });
 }
@@ -116,7 +128,7 @@ function load() { if (localStorage.getItem('lastSearch') === null)
 else {city=localStorage.getItem('lastSearch');
 getLat();}
 }
-
+hideData();
 document.getElementById("searchBut").addEventListener("click", function (event) { event.preventDefault() });
 document.getElementById("searchBut").addEventListener("click", function () { searchCity() });
 document.getElementById("searchBut").addEventListener("click", function (event) { event.stopPropagation });
