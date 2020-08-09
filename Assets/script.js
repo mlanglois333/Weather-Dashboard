@@ -22,8 +22,6 @@ function searchCity() {
 
   var citySearch = $("#searchVal").val();
   city = citySearch.trim();
-  var stateSearch = $("#state").val();
-  state = stateSearch.trim();
 
   getLat();
 
@@ -32,14 +30,14 @@ function searchCity() {
 
 function getLat() {
 
-  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "," + state + "&appid=516035025459d10bbc10ed362c69ce7b";
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=516035025459d10bbc10ed362c69ce7b";
 
   $.ajax({
     url: queryURL,
     method: "GET"
   })
     .then(function (response) {
-      
+
       var weathImg = "'http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png'"
       $("#cityTitle").html(response.name + " " + now + "<img src=" + weathImg + ">");
 
@@ -64,7 +62,7 @@ function renderWeather() {
   })
     .then(function (response) {
 
-      
+
 
       if (response.current.uvi < 3.1) {
         $("#UV").html("UV Index: <span class='green'>" + response.current.uvi + "</span>");
@@ -105,8 +103,8 @@ function renderWeather() {
 
 
 
-$("#searchVal").val("");
-$("#state").val("");
+  $("#searchVal").val("");
+  $("#state").val("");
 
   cityBut();
 
