@@ -39,7 +39,7 @@ function getLat() {
     method: "GET"
   })
     .then(function (response) {
-      console.log(response);
+      
       var weathImg = "'http://openweathermap.org/img/wn/" + response.weather[0].icon + "@2x.png'"
       $("#cityTitle").html(response.name + " " + now + "<img src=" + weathImg + ">");
 
@@ -64,7 +64,7 @@ function renderWeather() {
   })
     .then(function (response) {
 
-      console.log(response);
+      
 
       if (response.current.uvi < 3.1) {
         $("#UV").html("UV Index: <span class='green'>" + response.current.uvi + "</span>");
@@ -103,6 +103,10 @@ function renderWeather() {
 
   }
 
+
+
+$("#searchVal").val("");
+$("#state").val("");
 
   cityBut();
 
