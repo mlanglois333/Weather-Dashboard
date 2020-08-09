@@ -1,18 +1,19 @@
 
 var now = moment().format('MMMM Do, h:mm');
 var city = "";
+var state = "";
 let lon = "";
 let lat = "";
-const hideClass= $(".hide");
+const hideClass = $(".hide");
 
 
 
 function hideData() {
 
-hideClass.hide();
+  hideClass.hide();
 }
 
-function showData(){
+function showData() {
 
   hideClass.show()
 }
@@ -21,7 +22,8 @@ function searchCity() {
 
   var citySearch = $("#searchVal").val();
   city = citySearch.trim();
-
+  var stateSearch = $("#state").val();
+  state = stateSearch.trim();
 
   getLat();
 
@@ -30,7 +32,7 @@ function searchCity() {
 
 function getLat() {
 
-  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=516035025459d10bbc10ed362c69ce7b";
+  var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "," + state + "&appid=516035025459d10bbc10ed362c69ce7b";
 
   $.ajax({
     url: queryURL,
@@ -92,14 +94,15 @@ function renderWeather() {
 
       }
     });
-    if(localStorage.getItem('lastSearch') === null){
+  if (localStorage.getItem('lastSearch') === null) {
     localStorage.setItem('lastSearch', city);
-    }
-    else {localStorage.clear('lastSearch');
+  }
+  else {
+    localStorage.clear('lastSearch');
     localStorage.setItem('lastSearch', city);
 
   }
-  console.log(localStorage.getItem('lastSearch'));
+
 
   cityBut();
 
@@ -123,14 +126,15 @@ function cityBut() {
 
 }
 
-function load() { if (localStorage.getItem('lastSearch') === null)
-{return}
-else {city=localStorage.getItem('lastSearch');
-getLat();}
+function load() {
+  if (localStorage.getItem('lastSearch') === null) { return }
+  else {
+    city = localStorage.getItem('lastSearch');
+    getLat();
+  }
 }
 hideData();
 document.getElementById("searchBut").addEventListener("click", function (event) { event.preventDefault() });
 document.getElementById("searchBut").addEventListener("click", function () { searchCity() });
 document.getElementById("searchBut").addEventListener("click", function (event) { event.stopPropagation });
 load();
-console.log(localStorage.getItem('lastSearch'));
